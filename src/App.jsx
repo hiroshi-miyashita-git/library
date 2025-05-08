@@ -50,10 +50,18 @@ function App() {
   return (
     <>
     <div>
-      <h1 className="yusei-magic-regular" onClick={handleClick} style={{ cursor: 'pointer' }}>{showImages ? '読んだ本' : 'パパ図書館'}</h1>
+      <h1 className="yusei-magic-regular" onClick={handleClick} style={{ cursor: 'pointer',  
+    position: showImages ? 'fixed' : 'relative',
+    top: showImages ? '0' : '50%',
+    left: showImages ? '0' : '50%',
+    transform: showImages ? 'none' : 'translate(-50%, -50%)',
+    width: showImages ? '100%' : 'auto',
+    textAlign: 'center',
+    backgroundColor: showImages ? 'white' : 'transparent',
+    zIndex: showImages ? 1000 : 'auto',
+    padding: '10px' }}>{showImages ? '読んだ本' : 'パパ図書館'}</h1>
       {showImages  && (
         <div style={{ display: 'flex', gap: '10px' }}>
-          {/* {imageUrls.map((url, index) => ( */}
           {imageIds.map((id, index) => {
             const imageUrl = `https://images-fe.ssl-images-amazon.com/images/P/${id}.09.LZZZZZZZ`;
             const productUrl = `https://www.amazon.co.jp/dp/${id}`;
@@ -67,7 +75,7 @@ function App() {
               <img
                 src={imageUrl}
                 alt={`book-${index}`}
-                style={{ width: '150px', height: 'auto' }}
+                style={{ width: '250px', height: 'auto' }}
               />
             </a>
             );
